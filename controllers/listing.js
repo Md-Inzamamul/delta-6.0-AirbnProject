@@ -1,9 +1,31 @@
 const Listing = require("../models/listing");
 
+
+
 module.exports.index = async (req, res) => {
-    const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings });
+    let { search } = req.query;
+
+    let query = {};
+    let noResult = false;
+
+    if (search) {
+        query.title = { $regex: search, $options: "i" };
+    }
+
+    let allListings = await Listing.find(query);
+
+    // If no search results
+    if (search && allListings.length === 0) {
+        req.flash("error", `No listings found for "${search}". Showing all listings instead.`);
+        noResult = true;
+        allListings = await Listing.find({});
+    }
+
+    res.render("listings/index.ejs", { allListings, search, noResult });
 };
+
+
+
 
 module.exports.renderNewForm = (req, res) => {
     res.render("listings/new.ejs");

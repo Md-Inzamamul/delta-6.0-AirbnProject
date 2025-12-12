@@ -90,6 +90,7 @@ app.use((req, res, next) => {
     next();
 });
 
+
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter)
@@ -97,12 +98,6 @@ app.use("/", userRouter)
 app.all(/.*/, (req, res, next) => {
     next(new ExpressError(404, "Page Not Found!"));
 })
-// app.use((req, res, next) => {
-//     next(new ExpressError(404, "Page Not Found!"));
-// });
-
-
-
 
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something went wrong" } = err;

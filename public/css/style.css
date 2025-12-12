@@ -24,7 +24,7 @@ min-height: 100vh;
     color: #222222 !important;
 }
 
-.f-info{
+/* .f-info{
     height:4.5rem ;
     width: 100%;
     background-color: #ebebeb;
@@ -64,7 +64,50 @@ min-height: 100vh;
 .f-info-socials i{
   margin: 0.5rem;
   font-size: 1.2rem;
+} */
+ .f-info {
+    width: 100%;
+    background-color: #ebebeb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    flex-wrap: wrap;   /* 📌 mobile me content line change karega */
+    gap: 10px;         /* items ke beech thoda gap */
 }
+
+.f-info-links {
+    display: flex;
+    flex-wrap: wrap;   /* 📌 links break ho sakte */
+    gap: 10px;
+}
+
+.f-info-links a {
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+.f-info-socials {
+    display: flex;
+    gap: 15px;
+    font-size: 1.2rem;
+}
+@media (max-width: 600px) {
+  .f-info {
+      flex-direction: column;   /* 📌 sab vertical ho jayega */
+      text-align: center;
+  }
+
+  .f-info-links,
+  .f-info-socials {
+      justify-content: center;  /* center align on small screens */
+  }
+}
+
 
 /* Cards */
 .listing-card{
